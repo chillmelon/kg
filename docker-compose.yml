@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:4.4.12-community
+    ports:
+      - 7888:7474
+      - 7999:7687
+    restart: unless-stopped
+    environment:
+      - NEO4J_AUTH=neo4j/secret
+      - NEO4JLABS_PLUGINS=["apoc", "n10s"]
+    volumes:
+      - ./db/data:/data
+      - ./db/conf:/conf
+      - ./db/log:/log
+      - ./db/plugins:/plugins
